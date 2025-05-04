@@ -1,0 +1,54 @@
+/* navbar.css */
+
+body {
+  margin: 0;
+  padding-top: 70px; /* offset for fixed-top navbar */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.custom-navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  z-index: 1050;
+}
+
+.custom-brand {
+  letter-spacing: 1px;
+}
+
+.custom-link {
+  color: #444;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+.custom-link:hover,
+.custom-link.active {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #dee2e6;
+}
+
+.logout-btn {
+  background-color: #f8f9fa;
+  color: #343a40;
+  border: 1px solid #ced4da;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #343a40;
+  color: #fff;
+}

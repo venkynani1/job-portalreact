@@ -1,0 +1,110 @@
+/* Profile Card Styling */
+.card {
+  border: none;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #acf4fd 50%, #ffffff 50%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card .fw-semibold {
+  font-weight: 600;
+}
+
+.profile-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 3px solid #007bff;
+}
+
+.preview-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border: 2px solid #007bff;
+}
+
+/* Profile Icon */
+.profile-icon {
+  font-size: 100px;
+  color: #007bff;
+}
+
+/* Button Styling */
+.btn-lg {
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
+}
+
+.btn-outline-secondary {
+  border-color: #6c757d;
+  color: #6c757d;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+.btn-outline-secondary:hover {
+  color: #0056b3;
+  border-color: #0056b3;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* Input and Textarea Styles */
+.form-control {
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #0c3c74;
+  box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Spacing and Layout Adjustments */
+.container {
+  max-width: 1100px;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.gap-3 {
+  gap: 1rem;
+}
+
+/* Text Color */
+.text-info {
+  color: #17a2b8 !important;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}
+
+/* Card Shadow */
+.shadow-lg {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading Color */
+h2.text-center {
+  color: #007bff;
+}

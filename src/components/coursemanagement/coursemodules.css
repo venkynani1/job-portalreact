@@ -1,0 +1,117 @@
+/* Global Styles */
+.course-modules-wrapper {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  
+  .page-header {
+    font-size: 28px;
+    font-weight: bold;
+    color: #343a40;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+  }
+  
+  .module-form {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .module-form .form-label {
+    font-weight: 500;
+    color: #495057;
+  }
+  
+  .submit-btn {
+    background-color: #007bff;
+    border-color: #007bff;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+  .divider {
+    border-top: 1px solid #e9ecef;
+    margin: 30px 0;
+  }
+  
+  .module-card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    background-color: #f8f9fa;
+  }
+  
+  .module-card .card-body {
+    padding: 20px;
+  }
+  
+  .module-card .card-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #007bff;
+    margin-bottom: 15px;
+  }
+  
+  .file-list {
+    padding-left: 20px;
+  }
+  
+  .file-list a {
+    color: #007bff;
+    font-weight: 500;
+  }
+  
+  .file-list a:hover {
+    text-decoration: underline;
+  }
+  
+  .module-actions .btn {
+    border-radius: 5px;
+    padding: 8px 15px;
+  }
+  
+  .module-actions .btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+  }
+  
+  .module-actions .btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #e0a800;
+  }
+  
+  .module-actions .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+  
+  .module-actions .btn-danger:hover {
+    background-color: #c82333;
+    border-color: #c82333;
+  }
+  
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    .course-modules-wrapper {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  
+    .page-header {
+      font-size: 24px;
+    }
+  
+    .module-card {
+      margin-bottom: 15px;
+    }
+  }
+  

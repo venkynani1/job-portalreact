@@ -1,0 +1,82 @@
+/* Container */
+.instructor-signup-container {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+/* Card Styling */
+.instructor-signup-card {
+  border-radius: 15px;
+  border: none;
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 20px;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+/* Form Inputs */
+input.form-control {
+  border-radius: 0.5rem;
+  border: 1px solid #ced4da;
+  padding: 1rem;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Input Focus Effect */
+input.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+}
+
+/* Button Styling */
+button.btn-primary {
+  font-size: 1.1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+button.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Alert Messages */
+.alert {
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+/* Footer Links */
+.card-footer {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.card-footer .btn-login {
+  font-size: 1rem;
+  color: #007bff;
+  border: none;
+  background-color: transparent;
+}
+
+.card-footer .btn-login:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  .instructor-signup-container {
+    padding: 15px;
+  }
+}

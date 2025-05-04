@@ -1,0 +1,160 @@
+/* Global container styles */
+.dashboard-wrapper {
+  background-color: #f8f9fa;
+}
+
+.internal-navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-container {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  border-radius: 5px 0 0 5px;
+  height: 40px;
+  border: 1px solid #ced4da;
+  padding-left: 15px;
+  box-shadow: none;
+}
+
+.course-dropdown {
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 5px 5px;
+}
+
+.course-dropdown li:hover {
+  background-color: #e9ecef;
+  cursor: pointer;
+}
+
+.add-course-btn {
+  background-color: #e7eb04;
+  color: #fff;
+  border-radius: 5px;
+  padding: 8px 20px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.add-course-btn:hover {
+  background-color: #b30045;
+}
+
+.course-header {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Table Styling */
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table th {
+  background-color: #f1f3f5;
+  color: #495057;
+  padding: 12px 15px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.table td {
+  padding: 12px 15px;
+  vertical-align: middle;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f1f3f5;
+}
+
+.table-bordered td,
+.table-bordered th {
+  border: 1px solid #dee2e6;
+}
+
+.text-primary {
+  color: #007bff;
+  cursor: pointer;
+}
+
+.text-primary:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-weight: 600;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border: none;
+}
+
+.btn-sm {
+  padding: 4px 10px;
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 20px;
+}
+
+.pagination .page-item {
+  margin: 0 3px;
+}
+
+.page-item .page-link {
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: 600;
+  color: #007bff;
+}
+
+.page-item.active .page-link {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.page-item.disabled .page-link {
+  background-color: #f1f3f5;
+  color: #6c757d;
+}
+
+/* Spacing */
+.mt-4 {
+  margin-top: 40px;
+}
+
+.my-4 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.table-bordered td,
+.table-bordered th {
+  border: 1px solid #dee2e6;
+}
