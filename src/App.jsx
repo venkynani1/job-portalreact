@@ -16,9 +16,7 @@ import "../src/App.css";
 import EditCoursePage from "./components/coursemanagement/editcourse";
 import CourseModulesPage from "./components/coursemanagement/coursemodules";
 import EditCourseModulePage from "./components/coursemanagement/editcoursemodule";
-import AssignmentListPage from "./components/assignment/assignment";
-import EditAssignmentPage from "./components/assignment/editassignment";
-import AddAssignmentPage from "./components/assignment/addassignment";
+
 function App() {
   const dispatch = useDispatch();
 
@@ -41,11 +39,8 @@ function App() {
       <Route path="/editcourse/:courseId" element={<EditCoursePage />} />
       <Route path="/coursemodules/:courseId" element={<CourseModulesPage />} />
       <Route path="/edit/:moduleId" element={<EditCourseModulePage />} />
-      <Route path="/assignment" element={<AssignmentListPage />} />
-      <Route path="/editassignment/:id" element={<EditAssignmentPage />} />
-
-      <Route path="/addassignment/:moduleId" element={<AddAssignmentPage />} />
-
+    
+      
       <Route path="/profile" element={<ProfilePage />} />
     </Routes>
   );

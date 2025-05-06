@@ -50,7 +50,6 @@
   color: #ffffff;
   font-weight: 500;
 }
-
 .pagination .page-item.disabled .page-link {
   color: #6c757d;
   pointer-events: none;

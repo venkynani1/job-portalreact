@@ -12,13 +12,10 @@ function EnrolledUsersPage() {
   useEffect(() => {
     fetchEnrollments();
   }, [currentPage]);
-
   const fetchEnrollments = () => {
-    const token = localStorage.getItem("authToken");
-    const endpoint = `http://localhost:8081/api/enrollments/getAll?page=${
-      currentPage - 1
-    }&size=10`;
-
+    const token = localStorage.getItem("token");
+    const endpoint = `http://localhost:8081/api/enrollments/getAll?page=${currentPage}&size=11`;
+  
     axios
       .get(endpoint, {
         headers: {
@@ -27,16 +24,46 @@ function EnrolledUsersPage() {
         },
       })
       .then((response) => {
-        setEnrollments(response.data.content || []);
-        setTotalPages(response.data.totalPages || 1);
+        if (response.data.content) {
+          setEnrollments(response.data.content); // Enrollment content
+          setTotalPages(response.data.totalPages); // Total pages for pagination
+        }
       })
-      .catch((error) => console.error("Error fetching enrollments:", error));
+      .catch((error) => {
+        console.error("Error fetching enrollments:", error);
+      });
   };
-
+  
   const handlePageChange = (page) => {
     if (page > 0 && page <= totalPages) {
       setCurrentPage(page);
     }
+  };
+
+  const handleIssueCertificate = (enrollmentId) => {
+    const token = localStorage.getItem("token");
+
+    axios
+      .post(
+        `http://localhost:8081/api/certificates/issue/${enrollmentId}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        alert("Certificate issued successfully!");
+        fetchEnrollments(); // Refresh to update the issued flag
+      })
+      .catch((error) => {
+        console.error("Error issuing certificate:", error);
+
+          alert("Certificate already issued.");
+        
+      });
   };
 
   return (
@@ -51,15 +78,15 @@ function EnrolledUsersPage() {
           </div>
           <div className="card-body">
             <div className="table-responsive">
-              <table className="table table-hover align-middle">
+              <table className="table table-hover table-striped table-bordered mt-3">
                 <thead className="table-light">
                   <tr>
                     <th>Job Seeker</th>
                     <th>Course</th>
-                    <th>Progress (%)</th>
                     <th>Completed</th>
                     <th>Enrolled Date</th>
                     <th>Completion Date</th>
+                    <th>Certificate</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -68,13 +95,10 @@ function EnrolledUsersPage() {
                       <tr key={enrollment.id}>
                         <td>{enrollment.jobSeeker?.name || "N/A"}</td>
                         <td>{enrollment.course?.title || "N/A"}</td>
-                        <td>{enrollment.progress || 0}</td>
                         <td>
                           <span
                             className={`badge ${
-                              enrollment.completed
-                                ? "bg-success"
-                                : "bg-secondary"
+                              enrollment.completed ? "bg-success" : "bg-secondary"
                             }`}
                           >
                             {enrollment.completed ? "Yes" : "No"}
@@ -82,17 +106,29 @@ function EnrolledUsersPage() {
                         </td>
                         <td>
                           {enrollment.enrolledDate
-                            ? new Date(
-                                enrollment.enrolledDate
-                              ).toLocaleDateString()
+                            ? new Date(enrollment.enrolledDate).toLocaleDateString()
                             : "N/A"}
                         </td>
                         <td>
                           {enrollment.completionDate
-                            ? new Date(
-                                enrollment.completionDate
-                              ).toLocaleDateString()
+                            ? new Date(enrollment.completionDate).toLocaleDateString()
                             : "N/A"}
+                        </td>
+                        <td>
+                          {enrollment.completed ? (
+                            enrollment.certificateIssued ? (
+                              <span className="text-success">Already Issued</span>
+                            ) : (
+                              <button
+                                className="btn btn-sm btn-outline-primary"
+                                onClick={() => handleIssueCertificate(enrollment.id)}
+                              >
+                                Issue
+                              </button>
+                            )
+                          ) : (
+                            <span className="text-muted">Not completed</span>
+                          )}
                         </td>
                       </tr>
                     ))
@@ -122,19 +158,12 @@ function EnrolledUsersPage() {
                     key={i + 1}
                     className={`page-item ${currentPage === i + 1 ? "active" : ""}`}
                   >
-                    <button
-                      className="page-link"
-                      onClick={() => handlePageChange(i + 1)}
-                    >
+                    <button className="page-link" onClick={() => handlePageChange(i + 1)}>
                       {i + 1}
                     </button>
                   </li>
                 ))}
-                <li
-                  className={`page-item ${
-                    currentPage === totalPages ? "disabled" : ""
-                  }`}
-                >
+                <li className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}>
                   <button
                     className="page-link"
                     onClick={() => handlePageChange(currentPage + 1)}

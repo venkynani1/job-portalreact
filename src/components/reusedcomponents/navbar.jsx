@@ -10,6 +10,7 @@ const Navbar = () => {
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
+    dispatch(setUser({ user: {} }));
     navigate("/");
   };
 

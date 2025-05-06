@@ -170,7 +170,7 @@ function CourseManagementPage() {
                     No courses available.
                   </td>
                 </tr>
-              )}
+              )}  
             </tbody>
           </table>
         </div>

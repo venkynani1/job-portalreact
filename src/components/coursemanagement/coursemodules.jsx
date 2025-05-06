@@ -140,18 +140,8 @@ function CourseModules() {
                   >
                     Delete
                   </button>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => navigate(`/addassignment/${mod.id}`)}
-                  >
-                    Add assignment
-                  </button>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => navigate(`/editassignment/${mod.id}`)}  
-                  >
-                    Edit Assignment
-                  </button>
+                 
+                 
                 </div>
               </div>
             </div>

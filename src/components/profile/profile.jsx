@@ -17,9 +17,9 @@ function ProfilePage() {
   const [profileImage, setProfileImage] = useState(null);
   const token = localStorage.getItem("token");
 
-  const fetchProfile = async (e) => {
+  const fetchProfile = async () => {
 
-    e.preventDefault();
+   
     try {
       const response = await axios.get("http://localhost:8081/api/instructor/getProfile", {
         headers: {
@@ -45,7 +45,8 @@ function ProfilePage() {
     fetchProfile();
   }, []);
 
-  const updateProfile = async () => {
+  const updateProfile = async (e) => {
+    e.preventDefault();
     try {
       const profile = {
         firstName,
@@ -83,6 +84,8 @@ function ProfilePage() {
     formData.append("file", profileImage);
 
     try {
+      console.log("Uploading image for ID:", id);
+
       const response = await axios.post(
         `http://localhost:8081/api/instructor/image/upload/${id}`,
         formData,

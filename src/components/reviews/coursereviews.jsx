@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import InstructorNavbar from "../reusedcomponents/navbar";
+import Navbar from "../reusedcomponents/navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./coursereviews.css";
 
@@ -8,22 +8,25 @@ function CourseReviewsPage() {
   const [reviews, setReviews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-
   useEffect(() => {
     const fetchReviews = async () => {
-      try {  
-        const token = localStorage.getItem("authToken");
+      try {
+        const token = localStorage.getItem("token");
         const response = await axios.get(
-      `http://localhost:8081/api/reviews/getAll?page=${currentPage - 1}&size=10`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      }
+          `http://localhost:8081/api/reviews/getAll?page=${
+            currentPage - 1
+          }&size=10`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
         );
-        setReviews(response.data.reviews || []);
-        setTotalPages(response.data.totalPages || 1);
+
+        // Since the response contains a paginated Page<CourseReview>, update accordingly
+        setReviews(response.data.content || []); // Reviews content
+        setTotalPages(response.data.totalPages || 1); // Total pages
       } catch (error) {
         console.error("Error fetching reviews:", error);
       }
@@ -32,15 +35,14 @@ function CourseReviewsPage() {
     fetchReviews();
   }, [currentPage]);
 
-  const handlePageChange = (direction) => {
-    setCurrentPage((prev) =>
-      Math.max(1, Math.min(prev + direction, totalPages))
-    );
+  const handlePageChange = (page) => {
+    if (page > 0 && page <= totalPages) {
+      setCurrentPage(page);
+    }
   };
-
   return (
     <div className="course-reviews-wrapper">
-      <InstructorNavbar />
+      <Navbar />
 
       <div className="container course-reviews-container">
         <div className="card shadow-sm reviews-card">
@@ -52,7 +54,7 @@ function CourseReviewsPage() {
 
           <div className="card-body">
             <div className="table-responsive">
-              <table className="table table-hover align-middle">
+              <table className="table table-hover table-striped table-bordered mt-3">
                 <thead className="table-light">
                   <tr>
                     <th>Job Seeker</th>
@@ -69,7 +71,9 @@ function CourseReviewsPage() {
                         <td>{review.jobSeeker?.name || "N/A"}</td>
                         <td>{review.course?.title || "N/A"}</td>
                         <td>
-                          <span className="badge bg-primary">{review.rating}</span>
+                          <span className="badge bg-primary">
+                            {review.rating}
+                          </span>
                         </td>
                         <td>{review.reviewText || "N/A"}</td>
                         <td>
@@ -89,20 +93,33 @@ function CourseReviewsPage() {
                 </tbody>
               </table>
             </div>
-
-            <nav className="pagination-nav mt-4">
-              <ul className="pagination justify-content-center">
-                <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+            <nav className="pagination-nav">
+              <ul className="pagination justify-content-center mt-4">
+                <li
+                  className={`page-item ${currentPage === 1 ? "disabled" : ""}`}
+                >
                   <button
                     className="page-link"
-                    onClick={() => handlePageChange(-1)}
+                    onClick={() => handlePageChange(currentPage - 1)}
                   >
                     Previous
                   </button>
                 </li>
-                <li className="page-item disabled">
-                  <span className="page-link">{currentPage}</span>
-                </li>
+                {Array.from({ length: totalPages }, (_, i) => (
+                  <li
+                    key={i + 1}
+                    className={`page-item ${
+                      currentPage === i + 1 ? "active" : ""
+                    }`}
+                  >
+                    <button
+                      className="page-link"
+                      onClick={() => handlePageChange(i + 1)}
+                    >
+                      {i + 1}
+                    </button>
+                  </li>
+                ))}
                 <li
                   className={`page-item ${
                     currentPage === totalPages ? "disabled" : ""
@@ -110,7 +127,7 @@ function CourseReviewsPage() {
                 >
                   <button
                     className="page-link"
-                    onClick={() => handlePageChange(1)}
+                    onClick={() => handlePageChange(currentPage + 1)}
                   >
                     Next
                   </button>
