@@ -35,9 +35,7 @@ const Navbar = () => {
           <li className="nav-item">
             <Link to="/enrollments" className="nav-link custom-link">Enrolled Users</Link>
           </li>
-          <li className="nav-item">
-            <Link to="/assignment" className="nav-link custom-link">Assignments</Link>
-          </li>
+         
           <li className="nav-item">
             <Link to="/reviews" className="nav-link custom-link">Reviews</Link>
           </li>
@@ -50,6 +48,7 @@ const Navbar = () => {
           </span>
           <img
             src={`http://localhost:8081/api/instructor/uploads/${user?.profileImagePath}`}
+            
             alt="User"
             className="user-image me-3"
           />

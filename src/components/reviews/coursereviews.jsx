@@ -11,9 +11,16 @@ function CourseReviewsPage() {
 
   useEffect(() => {
     const fetchReviews = async () => {
-      try {
+      try {  
+        const token = localStorage.getItem("authToken");
         const response = await axios.get(
-          `http://localhost:8081/api/reviews/getAll?page=${currentPage - 1}&size=10`
+      `http://localhost:8081/api/reviews/getAll?page=${currentPage - 1}&size=10`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
         );
         setReviews(response.data.reviews || []);
         setTotalPages(response.data.totalPages || 1);

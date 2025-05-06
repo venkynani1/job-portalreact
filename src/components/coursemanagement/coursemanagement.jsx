@@ -58,10 +58,14 @@ function CourseManagementPage() {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         })
-        .then((res) => setFilteredCourses(res.data))
-        .catch((err) => console.log(err));
-    } else {
-      setFilteredCourses([]);
+        .then((res) => {
+          if (Array.isArray(res.data)) {
+            setFilteredCourses(res.data);
+          } else {
+            setFilteredCourses([]);
+    }
+  })
+  .catch((err) => console.log(err));
     }
   };
 

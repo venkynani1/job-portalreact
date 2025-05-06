@@ -42,8 +42,10 @@ function App() {
       <Route path="/coursemodules/:courseId" element={<CourseModulesPage />} />
       <Route path="/edit/:moduleId" element={<EditCourseModulePage />} />
       <Route path="/assignment" element={<AssignmentListPage />} />
-      <Route path="/assignment/edit/:id" element={<EditAssignmentPage />} />
-      <Route path="/assignment/add" element={<AddAssignmentPage />} />
+      <Route path="/editassignment/:id" element={<EditAssignmentPage />} />
+
+      <Route path="/addassignment/:moduleId" element={<AddAssignmentPage />} />
+
       <Route path="/profile" element={<ProfilePage />} />
     </Routes>
   );

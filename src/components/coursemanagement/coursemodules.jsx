@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "./coursemodules.css";
-import Navbar from "../reusedcomponents/navbar"
+import Navbar from "../reusedcomponents/navbar";
 
 function CourseModules() {
   const { courseId } = useParams();
@@ -58,7 +58,7 @@ function CourseModules() {
 
   const handleDelete = (moduleId) => {
     axios
-      .delete(`http://localhost:8081/api/modules/${moduleId}`, {
+      .delete(`http://localhost:8081/api/modules/delete/${moduleId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -139,6 +139,18 @@ function CourseModules() {
                     onClick={() => handleDelete(mod.id)}
                   >
                     Delete
+                  </button>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => navigate(`/addassignment/${mod.id}`)}
+                  >
+                    Add assignment
+                  </button>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => navigate(`/editassignment/${mod.id}`)}  
+                  >
+                    Edit Assignment
                   </button>
                 </div>
               </div>

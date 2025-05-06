@@ -17,7 +17,9 @@ function ProfilePage() {
   const [profileImage, setProfileImage] = useState(null);
   const token = localStorage.getItem("token");
 
-  const fetchProfile = async () => {
+  const fetchProfile = async (e) => {
+
+    e.preventDefault();
     try {
       const response = await axios.get("http://localhost:8081/api/instructor/getProfile", {
         headers: {

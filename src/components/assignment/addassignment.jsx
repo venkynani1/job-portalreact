@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './addassignment.css';
-import Navbar from '../reusedcomponents/navbar'; // Adjust path as needed
+import Navbar from '../reusedcomponents/navbar';
 
 const AddAssignmentPage = () => {
     const [title, setTitle] = useState('');
@@ -10,92 +10,51 @@ const AddAssignmentPage = () => {
     const [url, setUrl] = useState('');
     const [submissionDeadline, setSubmissionDeadline] = useState('');
     const navigate = useNavigate();
+    const { moduleId } = useParams(); // ⬅️ Fetch moduleId from URL
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const assignment = { title, description, url, submissionDeadline };
 
-        const token = localStorage.getItem("token");
-        const config = {
+        const token = localStorage.getItem('token');
+        await axios.post(`http://localhost:8081/api/assignment/add/${moduleId}`, assignment, {
             headers: {
                 Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            }
-        };
-
-        try {
-            await axios.post(
-                'http://localhost:8081/api/assignment/add',
-                assignment,
-                config
-            );
-            navigate('/assignment');
-        } catch (err) {
+            },
+        })
+        .then(() => {
+            navigate(`/coursemodules/${moduleId}`);
+        })
+        .catch((err) => {
             console.error('Error adding assignment:', err);
-            alert('Failed to add assignment. Please try again.');
-        }
+            alert('Failed to add assignment. Please check the console for details.');
+        });
     };
 
     return (
         <>
             <Navbar />
-            <div className="container mt-5">
-                <div className="card shadow-lg border-0 rounded-3">
-                    <div className="card-body">
-                        <h3 className="mb-4 text-center text-dark">Add New Assignment</h3>
-                        <form onSubmit={handleSubmit}>
-                            <div className="mb-3">
-                                <label htmlFor="title" className="form-label">Title</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="title"
-                                    value={title}
-                                    onChange={(e) => setTitle(e.target.value)}
-                                    required
-                                />
-                            </div>
-
-                            <div className="mb-3">
-                                <label htmlFor="description" className="form-label">Description</label>
-                                <textarea
-                                    className="form-control"
-                                    id="description"
-                                    rows={4}
-                                    value={description}
-                                    onChange={(e) => setDescription(e.target.value)}
-                                    required
-                                />
-                            </div>
-
-                            <div className="mb-3">
-                                <label htmlFor="url" className="form-label">URL</label>
-                                <input
-                                    type="url"
-                                    className="form-control"
-                                    id="url"
-                                    value={url}
-                                    onChange={(e) => setUrl(e.target.value)}
-                                    required
-                                />
-                            </div>
-
-                            <div className="mb-3">
-                                <label htmlFor="submissionDeadline" className="form-label">Submission Deadline</label>
-                                <input
-                                    type="date"
-                                    className="form-control"
-                                    id="submissionDeadline"
-                                    value={submissionDeadline}
-                                    onChange={(e) => setSubmissionDeadline(e.target.value)}
-                                    required
-                                />
-                            </div>
-
-                            <button type="submit" className="btn btn-primary w-100">Add Assignment</button>
-                        </form>
+            <div className="container">
+                <h2>Add Assignment</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label className="form-label">Title</label>
+                        <input type="text" className="form-control" value={title} onChange={(e) => setTitle(e.target.value)} />
                     </div>
-                </div>
+                    <div className="mb-3">
+                        <label className="form-label">Description</label>
+                        <textarea className="form-control" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">URL (Optional)</label>
+                        <input type="url" className="form-control" value={url} onChange={(e) => setUrl(e.target.value)} />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Submission Deadline</label>
+                        <input type="datetime-local" className="form-control" value={submissionDeadline} onChange={(e) => setSubmissionDeadline(e.target.value)} />
+                    </div>
+                    <button type="submit" className="btn btn-primary">Save Assignment</button>
+                </form>
             </div>
         </>
     );
